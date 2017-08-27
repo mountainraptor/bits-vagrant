@@ -1,0 +1,7 @@
+---
+
+- name: Include tasks for nodejs
+  include: nodejs.yml
+
+- name: Include tasks for additional packages
+  include: packages.yml

@@ -1,0 +1,4 @@
+---
+
+- name: Include tasks for python
+  include: python.yml

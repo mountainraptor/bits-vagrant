@@ -1,0 +1,8 @@
+---
+bits:
+  base:
+    path: "/opt/bits"
+  data:
+    path: "/opt/bits-data"
+  modules:
+    path: "/opt/bits-data/base/modules/modules"

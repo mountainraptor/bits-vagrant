@@ -1,0 +1,7 @@
+---
+
+- name: Include user optional tasks
+  static: no
+  include: "{{ item }}"
+  with_fileglob:
+    - "./tasks.d/*.yml"

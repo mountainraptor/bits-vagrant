@@ -1,0 +1,17 @@
+---
+
+- hosts: all
+  become: yes
+  become_user: root
+  gather_facts: False
+  pre_tasks:
+    - name: Install python for ansible
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python)
+      changed_when: False
+    - setup: # aka gather_facts
+  roles:
+    - python
+    - nodejs
+    - yarn
+    - bits
+    - optional

@@ -1,0 +1,24 @@
+---
+
+- name: List all BITS modules
+  shell: "ls -d {{ bits.modules.path }}/*"
+  register: bits_modules_list
+
+- name: Filter out modules that have a packages.json file containing a build script
+  find:
+    paths: "{{ bits_modules_list.stdout_lines }}"
+    follow: True
+    patterns: "package.json"
+    contains: ".*\"build\" *:.*"
+  register: bits_modules
+
+- name: Run npm build script on all results
+  become: yes
+  become_user: ubuntu
+  command: npm run build
+  args:
+    chdir: "{{ package_json.path | dirname }}"
+  with_items:
+    - "{{ bits_modules.files }}"
+  loop_control:
+    loop_var: package_json

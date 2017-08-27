@@ -1,0 +1,13 @@
+---
+
+- name: Install python-crypto
+  apt: name=python-crypto state=present
+
+- name: Install python-serial
+  apt: name=python-serial state=present
+
+- name: Install python-netifaces
+  apt: name=python-netifaces state=present
+
+- name: Install python-magic
+  apt: name=python-magic state=present

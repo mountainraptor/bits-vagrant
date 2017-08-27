@@ -1,0 +1,7 @@
+---
+
+- name: Install g++
+  apt: name=g++ state=present
+
+- name: Install make
+  apt: name=make state=present

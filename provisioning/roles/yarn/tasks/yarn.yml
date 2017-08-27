@@ -1,0 +1,14 @@
+---
+
+- name: Add yranpkg keys
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    state: present
+
+- name: Add yranpkg apt sources list deb
+  apt_repository:
+    repo: 'deb http://dl.yarnpkg.com/debian/ stable main'
+    state: present
+
+- name: Install yarn
+  action: apt pkg=yarn state=installed update-cache=yes

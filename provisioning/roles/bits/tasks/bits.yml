@@ -1,0 +1,27 @@
+---
+
+- name: Set permissions on BITS data directory
+  file:
+    path: /opt/bits-data
+    owner: ubuntu
+    group: ubuntu
+    mode: 0755
+    recurse: yes
+    state: directory
+
+- name: BITS npm build
+  become: yes
+  become_user: ubuntu
+  command: npm run build
+  args:
+    chdir: /opt/bits
+
+- name: Add runbits alias to .bashrc for user ubuntu
+  lineinfile:
+    dest: /home/ubuntu/.bashrc
+    line: "alias runbits='cd /opt/bits && npm run dev -- -d /opt/bits-data'"
+    owner: ubuntu
+    group: ubuntu
+    state: present
+    insertafter: EOF
+    create: True
